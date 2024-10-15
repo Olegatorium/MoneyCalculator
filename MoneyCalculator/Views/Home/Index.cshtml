@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="clientAddress">Адрес клиента:</label>
+        <input type="text" id="clientAddress" name="clientAddress" />
+    </div>
+
+    <div>
+        <label for="dailyIncome">Зароботок за день:</label>
+        <input type="number" id="dailyIncome" name="dailyIncome" step="0.01" />
+    </div>
+
+    <div>
+        <label for="hasCommission">Комиссия:</label>
+        <input type="checkbox" id="hasCommission" name="hasCommission" value="true" />
+    </div>
+
+    <div>
+        <input type="submit" value="Отправить" />
+        <div class="text-red">@ViewBag.ErrorMessage</div>
+        <div class="text-green">@ViewBag.Message</div>
+    </div>
+</form>

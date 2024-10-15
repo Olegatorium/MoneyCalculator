@@ -1,0 +1,124 @@
+﻿/* Общие стили */
+.text-green {
+    color: #0a8438;
+}
+
+.text-red {
+    color: #ff0000;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Навигационная панель */
+.navbar {
+    background-color: #0056b3;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start; /* Изменить на flex-start */
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+    .navbar ul li {
+        margin-left: 15px;
+    }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            transition: background 0.3s ease;
+        }
+
+            .navbar ul li a:hover {
+                background-color: #004a9e;
+                border-radius: 5px;
+            }
+
+/* Контент */
+.page-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Формы */
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input[type="submit"] {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    input[type="submit"]:hover {
+        background-color: #004a9e;
+    }
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+        .navbar ul li {
+            margin-left: 0;
+            margin-bottom: 10px;
+        }
+}
