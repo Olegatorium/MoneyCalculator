@@ -32,10 +32,13 @@ namespace MoneyCalculator.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsСommission")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Money")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Сommission")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");

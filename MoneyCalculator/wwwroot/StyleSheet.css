@@ -82,6 +82,35 @@ label {
     margin-bottom: 5px;
 }
 
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    padding-right: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* При наведении курсора */
+    input[type="date"]:hover {
+        border-color: #0056b3;
+    }
+
+    /* При фокусировке на поле */
+    input[type="date"]:focus {
+        border-color: #0056b3;
+        box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+        outline: none; /* Убираем стандартное выделение */
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        position: relative;
+        right: 5px; /* Сдвигаем иконку немного левее */
+    }
+
 input[type="text"],
 input[type="number"] {
     width: 100%;

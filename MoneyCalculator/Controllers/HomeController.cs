@@ -26,15 +26,17 @@ namespace MoneyCalculator.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(MoneyAddRequest moneyAddRequest)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return View();
+            }
+
             bool isCreated = await _moneyService.Create(moneyAddRequest);
 
             if (isCreated) 
             {
                 ViewBag.Message = "Дані завантажено";
-            }
-            else
-            {
-                @ViewBag.ErrorMessage = "Помилка!";
             }
 
             return View();

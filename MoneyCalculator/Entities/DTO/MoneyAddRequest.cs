@@ -4,14 +4,16 @@ namespace MoneyCalculator.Entities.DTO
 {
     public class MoneyAddRequest
     {
-        [Required]
-        [MinLength(3, ErrorMessage = "Address has to be a minimum of 3 characters")]
+        [Required(ErrorMessage = "'Адреса' не може бути пустою")]
+        [MinLength(3, ErrorMessage = "Адреса має бути мінімум 3 символа")]
         public string ClientAddress { get; set; }
 
-        [Required]
-        public decimal Money { get; set; }
+        [Required(ErrorMessage = "'Заробіток' не може бути пустим")]
+        public decimal? Money { get; set; }
 
-        [Required]
-        public bool IsСommission { get; set; }
+        public decimal? Сommission { get; set; }
+
+        [Required(ErrorMessage = "Потрібно вказати дату")]
+        public DateTime? Date { get; set; }
     }
 }

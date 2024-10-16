@@ -4,23 +4,38 @@
 
 <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
     <div>
-        <label for="clientAddress">Адрес клиента:</label>
+        <label for="clientAddress">Адреса клієнта:</label>
         <input type="text" id="clientAddress" name="clientAddress" />
     </div>
 
     <div>
-        <label for="dailyIncome">Зароботок за день:</label>
-        <input type="number" id="dailyIncome" name="dailyIncome" step="0.01" />
+        <label for="money">Заробіток:</label>
+        <input type="number" id="money" name="money" step="0.01" />
     </div>
 
     <div>
-        <label for="hasCommission">Комиссия:</label>
-        <input type="checkbox" id="hasCommission" name="hasCommission" value="true" />
+        <label for="сommission">Комісія за годину роботи (Не обов'язково):</label>
+        <input type="number" id="сommission" name="сommission" step="0.01" />
     </div>
 
     <div>
-        <input type="submit" value="Отправить" />
-        <div class="text-red">@ViewBag.ErrorMessage</div>
+        <label for="date">Дата:</label>
+        <input type="date" id="date" name="date" />
+    </div>
+
+    <div>
+        <input type="submit" value="Відправити" />
+        @if (ViewBag.Errors != null)
+        {
+            <div class="text-red ml">
+                <ul>
+                    @foreach (string error in ViewBag.Errors)
+                    {
+                        <li class="ml">@error</li>
+                    }
+                </ul>
+            </div>
+        }
         <div class="text-green">@ViewBag.Message</div>
     </div>
 </form>

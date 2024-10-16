@@ -19,9 +19,6 @@ namespace MoneyCalculator.Services
 
         public async Task<bool> Create(MoneyAddRequest moneyAddRequest)
         {
-            if (moneyAddRequest == null)
-                return false;
-
             MoneyData moneyDomain = _mapper.Map<MoneyData>(moneyAddRequest);
 
             moneyDomain.Id = Guid.NewGuid();

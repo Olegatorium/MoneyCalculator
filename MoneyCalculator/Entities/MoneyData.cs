@@ -8,6 +8,7 @@ namespace MoneyCalculator.Entities
         public Guid Id { get; set; }
         public string ClientAddress { get; set; }
         public decimal Money { get; set; }
-        public bool IsСommission { get; set; }
+        public decimal? Сommission { get; set; }
+        public DateTime Date { get; set; }
     }
 }
