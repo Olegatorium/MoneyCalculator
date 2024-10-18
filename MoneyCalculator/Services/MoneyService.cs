@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using MoneyCalculator.Entities;
 using MoneyCalculator.Entities.DTO;
 using MoneyCalculator.Models;
@@ -33,9 +34,9 @@ namespace MoneyCalculator.Services
 
         public async Task<CalculatedResults> GetResultsForDateRange(DateTime startDate, DateTime endDate) 
         {
-            List<MoneyData> moneyRecords = _db.MoneyData
+            List<MoneyData> moneyRecords = await _db.MoneyData
              .Where(x=> x.Date >= startDate && x.Date <= endDate)
-             .ToList();
+             .ToListAsync();
 
             CalculatedResults results = new CalculatedResults();
 
@@ -44,11 +45,22 @@ namespace MoneyCalculator.Services
                 results.TotalAmount += item.Money * item.WorkDuration;
 
                 results.Commission += (item.Сommission ?? 0) * item.WorkDuration;
-
             }
 
             return results;
-
         }
+        public async Task<List<MoneyResponse>> GetRecords() 
+        {
+
+            List<MoneyData> moneyDomain = await _db.MoneyData
+            .OrderByDescending(m => m.Date)
+            .Take(30)
+            .ToListAsync();
+
+            List<MoneyResponse> moneyResponses = _mapper.Map<List<MoneyResponse>>(moneyDomain);
+
+            return moneyResponses;
+        }
+
     }
 }

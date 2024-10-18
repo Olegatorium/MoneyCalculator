@@ -188,7 +188,69 @@ input[type="submit"] {
             }
 
 
+/* Общие стили для карточек */
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+.card-content p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+    .card-content p strong {
+        color: #0056b3;
+    }
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Кнопка Edit */
+.edit-btn {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    .edit-btn:hover {
+        background-color: #004a9e;
+    }
+
+
 /* Адаптивность */
+@media (min-width: 768px) {
+    .card-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        flex: 1 1 calc(50% - 20px);
+        margin: 10px;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar ul {
         flex-direction: column;

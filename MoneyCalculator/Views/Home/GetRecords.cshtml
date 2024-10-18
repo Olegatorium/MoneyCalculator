@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MoneyResponse>
+
+@{
+    ViewBag.Title = "GetRecords";
+}
+
+<div class="container">
+    <h2 class="text-green">Записи</h2>
+
+    <div class="card-list">
+        @foreach (var record in Model)
+        {
+            <div class="card">
+                <div class="card-content">
+                    <p><strong>Адреса клієнта:</strong> @record.ClientAddress</p>
+                    <p><strong>Заробіток за годину:</strong> @record.Money.ToString("C", new System.Globalization.CultureInfo("pl-PL"))</p>
+                    <p><strong>Тривалість Роботи:</strong> @record.WorkDuration</p>
+                    <p><strong>Комісія за годину роботи:</strong> @(record.Сommission.HasValue ?
+                        record.Сommission.Value.ToString("C", new System.Globalization.CultureInfo("pl-PL")) : "N/A")</p>
+                    <p><strong>Дата:</strong> @record.Date.ToString("dd-MM-yyyy")</p>
+                </div>
+                <div class="card-actions">
+                    <button class="edit-btn">Змінити</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

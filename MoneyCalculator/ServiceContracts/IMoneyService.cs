@@ -7,5 +7,7 @@ namespace MoneyCalculator.ServiceContracts
     {
         Task<bool> Create(MoneyAddRequest moneyAddRequest);
         Task<CalculatedResults> GetResultsForDateRange(DateTime startDate, DateTime endDate);
+        Task<List<MoneyResponse>> GetRecords();
+
     }
 }

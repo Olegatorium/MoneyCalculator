@@ -73,5 +73,14 @@ namespace MoneyCalculator.Controllers
 
             return View(model);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<List<MoneyResponse>>> GetRecords()
+        {
+            List<MoneyResponse> moneyResponses = await _moneyService.GetRecords();
+
+            return View(moneyResponses);
+        }
     }
 }
