@@ -139,6 +139,7 @@ input[type="submit"] {
         background-color: #004a9e;
     }
 
+
 /* Адаптивность */
 @media (max-width: 768px) {
     .navbar ul {

@@ -18,6 +18,7 @@ namespace MoneyCalculator.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClientAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Money = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    WorkDuration = table.Column<int>(type: "int", nullable: false),
                     Сommission = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

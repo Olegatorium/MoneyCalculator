@@ -11,6 +11,9 @@ namespace MoneyCalculator.Entities.DTO
         [Required(ErrorMessage = "'Заробіток' не може бути пустим")]
         public decimal? Money { get; set; }
 
+        [Required(ErrorMessage = "'Тривалість Роботи' не може бути пустою")]
+        public int? WorkDuration { get; set; }
+
         public decimal? Сommission { get; set; }
 
         [Required(ErrorMessage = "Потрібно вказати дату")]

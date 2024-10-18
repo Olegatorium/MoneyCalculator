@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MoneyCalculator.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241016233741_Initial")]
+    [Migration("20241018193901_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -40,6 +40,9 @@ namespace MoneyCalculator.Migrations
 
                     b.Property<decimal>("Money")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("WorkDuration")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("Сommission")
                         .HasColumnType("decimal(18,2)");

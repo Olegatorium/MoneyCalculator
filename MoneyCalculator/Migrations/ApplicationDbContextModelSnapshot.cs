@@ -38,6 +38,9 @@ namespace MoneyCalculator.Migrations
                     b.Property<decimal>("Money")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("WorkDuration")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("Сommission")
                         .HasColumnType("decimal(18,2)");
 
