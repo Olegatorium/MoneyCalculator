@@ -20,7 +20,10 @@
                     <p><strong>Дата:</strong> @record.Date.ToString("dd-MM-yyyy")</p>
                 </div>
                 <div class="card-actions">
-                    <button class="edit-btn">Змінити</button>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-moneyId="@record.Id" class="edit-btn">Змінити</a>
+                    @* /Home/Edit/1 *@
+                    <a asp-controller="Home" asp-action="Delete" asp-route-moneyId="@record.Id" class="delete-btn">Видалити</a>
+                    @* /Home/Delete/1 *@
                 </div>
             </div>
         }

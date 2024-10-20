@@ -1,0 +1,47 @@
+﻿@model MoneyResponse
+
+@{
+    ViewBag.Title = "Delete Record";
+}
+
+<a class="back-link" asp-controller="Home" asp-action="GetRecords">Назад до списку записів</a>
+<h2 class="delete-title">Видалити Запис</h2>
+<h3 class="delete-title">Ви впевнені, що хочете видалити цей запис?</h3>
+
+<div class="form-container">
+    <form asp-controller="Home" asp-action="Delete" method="post" class="edit-form">
+        <input type="hidden" asp-for="Id" />
+
+        @*Адреса клієнта*@
+        <div class="form-group">
+            <label asp-for="ClientAddress">Адреса клієнта</label>
+            <input asp-for="ClientAddress" class="form-input" disabled="disabled" />
+            <span asp-validation-for="ClientAddress" class="validation-error"></span>
+        </div>
+
+        @*Дата*@
+        <div class="form-group">
+            <label asp-for="Date">Дата</label>
+            <input asp-for="Date" type="date" class="form-input" disabled="disabled" />
+            <span asp-validation-for="Date" class="validation-error"></span>
+        </div>
+
+        @*Кнопка оновлення*@
+        <div class="form-group form-actions">
+            <button type="submit" class="submit-delete-btn">Видалити</button>
+            <div asp-validation-summary="All"></div>
+
+            @if (ViewBag.Errors != null)
+            {
+                <div class="error-container">
+                    <ul>
+                        @foreach (string error in ViewBag.Errors)
+                        {
+                            <li class="error-message">@error</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </form>
+</div>

@@ -8,9 +8,10 @@ namespace MoneyCalculator.Mappings
     {
         public AutoMapperProfile()
         {
-            //Region:
             CreateMap<MoneyData, MoneyResponse>().ReverseMap();
             CreateMap<MoneyData, MoneyAddRequest>().ReverseMap();
+            CreateMap<MoneyData, MoneyUpdateRequest>().ReverseMap();
+            CreateMap<MoneyResponse, MoneyUpdateRequest>().ReverseMap();
         }
     }
 }

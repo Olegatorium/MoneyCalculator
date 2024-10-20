@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using MoneyCalculator.Entities.DTO;
 using MoneyCalculator.Models;
 using MoneyCalculator.ServiceContracts;
@@ -9,9 +10,12 @@ namespace MoneyCalculator.Controllers
     public class HomeController : Controller
     {
         private readonly IMoneyService _moneyService;
-        public HomeController(IMoneyService moneyService)
+        private readonly IMapper _mapper;
+
+        public HomeController(IMoneyService moneyService, IMapper mapper)
         {
             _moneyService = moneyService;
+            _mapper = mapper;
         }
 
         [Route("[action]")]
@@ -35,7 +39,7 @@ namespace MoneyCalculator.Controllers
 
             bool isCreated = await _moneyService.Create(moneyAddRequest);
 
-            if (isCreated) 
+            if (isCreated)
             {
                 ViewBag.Message = "Дані завантажено";
             }
@@ -81,6 +85,71 @@ namespace MoneyCalculator.Controllers
             List<MoneyResponse> moneyResponses = await _moneyService.GetRecords();
 
             return View(moneyResponses);
+        }
+
+        [HttpGet]
+        [Route("[action]/{moneyId}")]
+        public async Task<IActionResult> Edit(Guid moneyId)
+        {
+            MoneyResponse moneyResponse = await _moneyService.GetMoneyRecordById(moneyId);
+
+            if (moneyResponse == null)
+            {
+                return RedirectToAction("GetRecords");
+            }
+
+            MoneyUpdateRequest moneyUpdateRequest = _mapper.Map<MoneyUpdateRequest>(moneyResponse);
+
+            return View(moneyUpdateRequest);
+        }
+
+        [HttpPost]
+        [Route("[action]/{moneyId}")]
+        public async Task<IActionResult> Edit(MoneyUpdateRequest moneyUpdateRequest)
+        {
+
+            if (moneyUpdateRequest == null)
+            {
+                return RedirectToAction("GetRecords");
+
+            }
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return View();
+            }
+
+            await _moneyService.UpdateMoneyRecord(moneyUpdateRequest);
+
+            return RedirectToAction("GetRecords");
+        }
+
+        [HttpGet]
+        [Route("[action]/{moneyId}")]
+        public async Task<IActionResult> Delete(Guid moneyId)
+        {
+            MoneyResponse moneyResponse = await _moneyService.GetMoneyRecordById(moneyId);
+
+            if (moneyResponse == null)
+            {
+                return RedirectToAction("GetRecords");
+            }
+
+            return View(moneyResponse);
+        }
+
+        [HttpPost]
+        [Route("[action]/{moneyId}")]
+        public async Task<IActionResult> Delete(MoneyUpdateRequest moneyUpdateRequest)
+        {
+            if (moneyUpdateRequest == null)
+            {
+                return RedirectToAction("GetRecords");
+            }
+
+            await _moneyService.DeleteMoneyRecord(moneyUpdateRequest);
+
+            return RedirectToAction("GetRecords");
         }
     }
 }

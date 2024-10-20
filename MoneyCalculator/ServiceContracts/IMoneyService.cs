@@ -8,6 +8,8 @@ namespace MoneyCalculator.ServiceContracts
         Task<bool> Create(MoneyAddRequest moneyAddRequest);
         Task<CalculatedResults> GetResultsForDateRange(DateTime startDate, DateTime endDate);
         Task<List<MoneyResponse>> GetRecords();
-
+        Task<MoneyResponse> GetMoneyRecordById(Guid moneyId);
+        Task UpdateMoneyRecord(MoneyUpdateRequest moneyUpdateRequest);
+        Task DeleteMoneyRecord(MoneyUpdateRequest moneyUpdateRequest);
     }
 }

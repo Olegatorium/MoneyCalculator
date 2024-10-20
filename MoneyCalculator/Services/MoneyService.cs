@@ -62,5 +62,34 @@ namespace MoneyCalculator.Services
             return moneyResponses;
         }
 
+        public async Task<MoneyResponse> GetMoneyRecordById(Guid moneyId)
+        {
+            MoneyData? moneyRecordDomain = await _db.MoneyData.FirstOrDefaultAsync(x => x.Id == moneyId);
+
+            MoneyResponse? moneyResponse = _mapper.Map<MoneyResponse>(moneyRecordDomain);
+
+            return moneyResponse;
+        }
+
+        public async Task UpdateMoneyRecord(MoneyUpdateRequest moneyUpdateRequest)
+        {
+            MoneyData moneyDataToUpdate = await _db.MoneyData.FirstAsync(x => x.Id == moneyUpdateRequest.Id);
+
+            moneyDataToUpdate.ClientAddress = moneyUpdateRequest.ClientAddress;
+            moneyDataToUpdate.Money = moneyUpdateRequest.Money ?? 0;
+            moneyDataToUpdate.WorkDuration = moneyUpdateRequest.WorkDuration ?? 0;
+            moneyDataToUpdate.Сommission = moneyUpdateRequest.Сommission ?? 0;
+            moneyDataToUpdate.Date = moneyUpdateRequest.Date ?? DateTime.Now;
+
+            await _db.SaveChangesAsync();
+        }
+        public async Task DeleteMoneyRecord(MoneyUpdateRequest moneyUpdateRequest)
+        {
+            MoneyData moneyDataDomain = _mapper.Map<MoneyData>(moneyUpdateRequest);
+
+            _db.Remove(moneyDataDomain);
+
+            await _db.SaveChangesAsync();
+        }
     }
 }
