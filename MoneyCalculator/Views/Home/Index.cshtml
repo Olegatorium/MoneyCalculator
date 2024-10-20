@@ -1,46 +1,47 @@
-﻿@{
+﻿@model MoneyAddRequest
+@{
     ViewBag.Title = "Index";
 }
 
 <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
-    <div>
-        <label for="clientAddress">Адреса клієнта:</label>
-        <input type="text" id="clientAddress" name="clientAddress" />
+
+    @*Адреса клієнта*@
+    <div class="form-group">
+        <label asp-for="ClientAddress">Адреса клієнта</label>
+        <input asp-for="ClientAddress" class="form-input" />
+        <span asp-validation-for="ClientAddress" class="validation-error"></span>
+    </div>
+
+    @*Заробіток*@
+    <div class="form-group">
+        <label asp-for="Money">Заробіток за годину</label>
+        <input asp-for="Money" type="number" step="0.01" class="form-input" />
+        <span asp-validation-for="Money" class="validation-error"></span>
+    </div>
+
+    @*Тривалість роботи*@
+    <div class="form-group">
+        <label asp-for="WorkDuration">Тривалість роботи</label>
+        <input asp-for="WorkDuration" type="number" class="form-input" />
+        <span asp-validation-for="WorkDuration" class="validation-error"></span>
+    </div>
+    
+    @*Комісія*@
+    <div class="form-group">
+        <label asp-for="Сommission">Комісія за годину (Не обов'язково)</label>
+        <input asp-for="Сommission" type="number" step="0.01" class="form-input" />
+        <span asp-validation-for="Сommission" class="validation-error"></span>
+    </div>
+
+    @*Дата*@
+    <div class="form-group">
+        <label asp-for="Date">Дата</label>
+        <input asp-for="Date" type="date" class="form-input" />
+        <span asp-validation-for="Date" class="validation-error"></span>
     </div>
 
     <div>
-        <label for="money">Заробіток за годину:</label>
-        <input type="number" id="money" name="money" step="0.01" />
-    </div>
-
-    <div>
-        <label for="workDuration">Тривалість роботи:</label>
-        <input type="number" id="workDuration" name="workDuration" min="0" step="1" />
-    </div>
-
-    <div>
-        <label for="сommission">Комісія за годину (Не обов'язково):</label>
-        <input type="number" id="сommission" name="сommission" step="0.01" />
-    </div>
-
-    <div>
-        <label for="date">Дата:</label>
-        <input type="date" id="date" name="date" />
-    </div>
-
-    <div>
-        <input type="submit" value="Відправити" />
-        @if (ViewBag.Errors != null)
-        {
-            <div class="text-red ml">
-                <ul>
-                    @foreach (string error in ViewBag.Errors)
-                    {
-                        <li class="ml">@error</li>
-                    }
-                </ul>
-            </div>
-        }
-        <div class="text-green">@ViewBag.Message</div>
+        <button type="submit" class="submit-btn">Відправити</button>
+        @* Альтернатива виводження помилок з модулей <div asp-validation-summary="All"></div> *@
     </div>
 </form>

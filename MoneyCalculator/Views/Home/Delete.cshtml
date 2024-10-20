@@ -29,19 +29,7 @@
         @*Кнопка оновлення*@
         <div class="form-group form-actions">
             <button type="submit" class="submit-delete-btn">Видалити</button>
-            <div asp-validation-summary="All"></div>
-
-            @if (ViewBag.Errors != null)
-            {
-                <div class="error-container">
-                    <ul>
-                        @foreach (string error in ViewBag.Errors)
-                        {
-                            <li class="error-message">@error</li>
-                        }
-                    </ul>
-                </div>
-            }
+            @* Альтернатива виводження помилок з модулей <div asp-validation-summary="All"></div> *@
         </div>
     </form>
 </div>

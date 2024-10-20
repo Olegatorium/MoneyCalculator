@@ -33,18 +33,12 @@ namespace MoneyCalculator.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
                 return View();
             }
 
             bool isCreated = await _moneyService.Create(moneyAddRequest);
 
-            if (isCreated)
-            {
-                ViewBag.Message = "Дані завантажено";
-            }
-
-            return View();
+            return RedirectToAction("Index");
         }
 
         [Route("[action]")]
@@ -115,7 +109,6 @@ namespace MoneyCalculator.Controllers
             }
             if (!ModelState.IsValid)
             {
-                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
                 return View();
             }
 
